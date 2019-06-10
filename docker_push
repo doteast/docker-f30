@@ -1,5 +1,5 @@
 #!/bin/bash
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-docker tag fedora-30:latest doteast/fedora-30:latest
-docker push doteast/fedora-30:latest
+docker tag docker-fedora30-ansible:latest doteast/docker-fedora30-ansible:latest
+docker push doteast/docker-fedora30-ansible:latest
 

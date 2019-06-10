@@ -8,10 +8,10 @@ before_install:
 
 script:
   # Test building Dockerfile.
-  - docker build -t fedora-30 .
+  - docker build -t docker-fedora30-ansible .
 
   # Test running the container.
-  - docker run --name test-container -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro fedora-30
+  - docker run --name test-container -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro docker-fedora30-ansible
 
   # Verify Ansible is available in the container.
   - docker exec --tty test-container env TERM=xterm ansible --version
