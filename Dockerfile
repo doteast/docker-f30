@@ -20,7 +20,7 @@ RUN dnf -y install systemd && dnf clean all && \
 # Install pip and other requirements.
 RUN dnf makecache \
   && dnf -y install \
-    python2-dnf \
+    python-dnf \
     python2-pip \
     sudo \
     which \
