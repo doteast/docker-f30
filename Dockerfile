@@ -20,22 +20,21 @@ RUN dnf -y install systemd && dnf clean all && \
 # Install pip and other requirements.
 RUN dnf makecache \
   && dnf -y install \
-    python3-dnf \
     python3-pip \
     sudo \
     which \
   && dnf clean all
 
 # Install Ansible via Pip.
-RUN pip3 install $pip_packages
+RUN pip install $pip_packages
 
 # Disable requiretty.
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
 
 # Install Ansible inventory file.
 RUN mkdir -p /etc/ansible
-RUN echo -e '[local]\nlocalhost ansible_connection=local ansible_python_interpreter=/usr/bin/python3' > /etc/ansible/hosts
-RUN echo -e '[defaults]\npython_interpreter=/usr/bin/python3' > /etc/ansible/ansible.cfg
+RUN echo -e '[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts
+#RUN echo -e '[defaults]\npython_interpreter=/usr/bin/python3' > /etc/ansible/ansible.cfg
 
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 CMD ["/usr/sbin/init"]
